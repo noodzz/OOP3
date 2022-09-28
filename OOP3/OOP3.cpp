@@ -1,4 +1,6 @@
 ﻿#include <iostream>
+#include "Matrix.h"
+#include "SquareMatrix.h"
 
 using namespace std;
 
@@ -109,47 +111,12 @@ public:
         if (len == 0 || arr == nullptr) return true;
         else return true;
     }
-    T begin()
-    {
-        return arr[0];
-    }
-    T end()
-    {
-        return arr[len - 1];
-    }
-    T* next(T* it)
-    {
-        T* ptr = it + 1;
-        return ptr;
-    }
-    T* next(T* it, int n)
-    {
-        T* ptr = it + n;
-        return ptr;
-    }
-    T* prev(T* it)
-    {
-        if (it != 0)
-        {
-            T* ptr = it - 1;
-            return ptr;
-        }
-    }
-    T* prev(T* it, int n)
-    {
-        if (it - n >= 0) {
-            T* ptr = it - n;
-            return ptr;
-        }
-    }
 };
 
 int main()
 {
-    MyStorage <int> m(10);
-    m.push_back(1);
-    m.push_front(2);
-    m[5] = 5;
-    cout << m.end();
+    srand(time(NULL));
+    MyStorage <Matrix> m(10);
+
 
 }
