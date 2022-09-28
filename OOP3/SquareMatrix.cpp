@@ -76,10 +76,3 @@ SquareMatrix SquareMatrix::minor(int r, int c)
 		return tmp;
 	}
 }
-SquareMatrix SquareMatrix::randSquareMatrix()
-{
-	srand(time(NULL));
-	SquareMatrix tmp(1 + rand() % 5);
-	tmp.random_fill();
-	return tmp;
-}

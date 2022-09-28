@@ -72,10 +72,3 @@ Matrix Matrix::transpose()
 			vals[i][j] = res.vals[i][j];
 	return *this;
 }
-Matrix Matrix::randMatrix()
-{
-	srand(time(NULL));
-	Matrix tmp(1 + rand() % 5, 1 + rand() % 5);
-	tmp.random_fill();
-	return tmp;
-}

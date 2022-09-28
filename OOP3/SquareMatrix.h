@@ -20,7 +20,6 @@ public:
 	~SquareMatrix();
 	void print() override;
 	float determinant();
-	SquareMatrix randSquareMatrix();
 };
 
 #endif // !SQUAREMATRIX_H

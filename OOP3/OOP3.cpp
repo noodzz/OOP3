@@ -113,10 +113,28 @@ public:
     }
 };
 
+SquareMatrix randSquareMatrix()
+{
+    srand(time(NULL));
+    SquareMatrix tmp(1 + rand() % 5);
+    tmp.random_fill();
+    return tmp;
+}
+
+Matrix randMatrix()
+{
+    srand(time(NULL));
+    Matrix tmp(1 + rand() % 5, 1 + rand() % 5);
+    tmp.random_fill();
+    return tmp;
+} 
+
 int main()
 {
     srand(time(NULL));
-    MyStorage <Matrix> m(10);
+    MyStorage <Matrix> storage(10);
+
+    
 
 
 }

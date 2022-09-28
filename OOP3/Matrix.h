@@ -22,7 +22,6 @@ public:
 	virtual void print();
 	void random_fill();
 	Matrix transpose();
-	Matrix randMatrix();
 };
 
 #endif
