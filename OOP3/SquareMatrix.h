@@ -19,7 +19,8 @@ public:
 	SquareMatrix(const SquareMatrix& sm);
 	~SquareMatrix();
 	void print() override;
-	float determinant();
+	float determinant() override;
+	int type() override;
 };
 
 #endif // !SQUAREMATRIX_H

@@ -5,7 +5,6 @@ using namespace std;
 
 Matrix::Matrix()
 {
-	cout << "Matrix()" << endl;
 	rows = 1;
 	cols = 1;
 	memory();
@@ -14,15 +13,13 @@ Matrix::Matrix()
 Matrix::Matrix(int r, int c)
 	: rows(r), cols(c)
 {
-	cout << "Matrix(int r, int c)" << endl;
 	memory();
 	for (int i = 0; i < rows; i++)
 		for (int j = 0; j < cols; j++)
 			vals[i][j] = 0;
 }
-Matrix::Matrix(Matrix& m)
+Matrix::Matrix(const Matrix& m)
 {
-	cout << "Matrix(Matrix& m)" << endl;
 	rows = m.rows;
 	cols = m.cols;
 	memory();
@@ -33,7 +30,6 @@ Matrix::Matrix(Matrix& m)
 }
 Matrix::~Matrix()
 {
-	cout << "~Matrix()" << endl;
 	for (int i = 0; i < rows; i++)
 		delete[] vals[i];
 	delete[] vals;
@@ -71,4 +67,8 @@ Matrix Matrix::transpose()
 		for (int j = 0; j < cols; j++)
 			vals[i][j] = res.vals[i][j];
 	return *this;
+}
+int Matrix::type()
+{
+	return 1;
 }

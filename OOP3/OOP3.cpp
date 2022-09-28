@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include "Matrix.h"
 #include "SquareMatrix.h"
+#include <time.h>
 
 using namespace std;
 
@@ -109,32 +110,98 @@ public:
     bool empty()
     {
         if (len == 0 || arr == nullptr) return true;
-        else return true;
+        else return false;
+    }
+    string get_type()
+    {
+        return typeid(*arr).name();
+    }
+    void resize(int l)
+    {
+        len = l;
+        T* tmp = new T[len];
+        for (int i = 0; i < len; i++)
+            tmp[i] = 0;
+        delete[] arr;
+        arr = tmp;
     }
 };
-
-SquareMatrix randSquareMatrix()
-{
-    srand(time(NULL));
-    SquareMatrix tmp(1 + rand() % 5);
-    tmp.random_fill();
-    return tmp;
-}
-
-Matrix randMatrix()
-{
-    srand(time(NULL));
-    Matrix tmp(1 + rand() % 5, 1 + rand() % 5);
-    tmp.random_fill();
-    return tmp;
-} 
 
 int main()
 {
     srand(time(NULL));
-    MyStorage <Matrix> storage(10);
-
-    
-
-
+    time_t start, end;
+    MyStorage <Matrix*> storage(10);
+    for (int i = 0; i < 100; i++)
+    {
+        int random = rand() % 13;
+        int rows = 1 + rand() % 7;
+        int cols = 1 + rand() % 7;
+        int n = 1 + rand() % 7;
+        if (storage.size() == 0) storage.resize(10);
+        int randpos = rand() % storage.size();
+        switch (random)
+        {
+        case 0:
+            cout << i << ". ";
+            storage.insert(new Matrix(rows, cols), randpos);
+            break;
+        case 1:
+            cout << i << ". ";
+            storage.insert(new SquareMatrix(n), randpos);
+            break;
+        case 2:
+            cout << i << ". ";
+            storage.clear();
+            break;
+        case 3:
+            cout << i << ". ";
+            storage.get(randpos);
+            break;
+        case 4:
+            cout << i << ". ";
+            storage.get_and_erase(randpos);
+            break;
+        case 5:
+            cout << i << ". ";
+            storage.pop_back();
+            break;
+        case 6:
+            cout << i << ". ";
+            storage.push_back(new Matrix(rows, cols));
+            break;
+        case 7:
+            cout << i << ". ";
+            storage.push_back(new SquareMatrix(n));
+            break;
+        case 8:
+            cout << i << ". ";
+            storage.push_front(new SquareMatrix(n));
+            break;
+        case 9:
+            cout << i << ". ";
+            storage.push_front(new Matrix(rows, cols));
+            break;
+        case 10:
+            if (storage[randpos] != NULL) {
+                cout << i << ". ";
+                storage[randpos]->random_fill();
+            }
+            break;
+        case 11:
+            if (storage[randpos] != NULL) {
+                cout << i << ". ";
+                storage[randpos]->transpose();
+            }
+            break;
+        case 12: //разобраться
+            if ((storage[randpos]->type()) == 2)
+            {
+                cout << i << ". ";
+                cout << storage[randpos]->determinant();
+             
+            }   
+            break;
+        }
+    }
 }

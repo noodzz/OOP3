@@ -16,12 +16,14 @@ protected:
 public:
 	Matrix();
 	Matrix(int r, int c);
-	Matrix(Matrix& m);
+	Matrix(const Matrix& m);
 	~Matrix();
 	void fill();
 	virtual void print();
 	void random_fill();
 	Matrix transpose();
+	virtual float determinant() { return 0; }
+	virtual int type();
 };
 
 #endif

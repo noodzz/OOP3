@@ -4,13 +4,9 @@
 
 using namespace std;
 
-SquareMatrix::SquareMatrix() : Matrix()
-{
-	cout << "SquareMatrix()" << endl;
-}
+SquareMatrix::SquareMatrix() : Matrix() {}
 SquareMatrix::SquareMatrix(int n) : Matrix(n, n)
 {
-	cout << "SquareMatrix(int n)" << endl;
 }
 SquareMatrix::SquareMatrix(const SquareMatrix& sm)
 {
@@ -21,11 +17,9 @@ SquareMatrix::SquareMatrix(const SquareMatrix& sm)
 	for (int i = 0; i < rows; i++)
 		for (int j = 0; j < cols; j++)
 			vals[i][j] = sm.vals[i][j];
-	cout << "SquareMatrix(const Matrix& sm)" << endl;
 }
 SquareMatrix::~SquareMatrix()
 {
-	cout << "~SquareMatrix()" << endl;
 }
 void SquareMatrix::print()
 {
@@ -75,4 +69,8 @@ SquareMatrix SquareMatrix::minor(int r, int c)
 		}
 		return tmp;
 	}
+}
+int SquareMatrix::type()
+{
+	return 2;
 }
