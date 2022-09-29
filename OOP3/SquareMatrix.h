@@ -20,7 +20,7 @@ public:
 	~SquareMatrix();
 	void print() override;
 	float determinant() override;
-	int type() override;
+	int type() { return 2; }
 };
 
 #endif // !SQUAREMATRIX_H

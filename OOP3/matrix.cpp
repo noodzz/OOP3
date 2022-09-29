@@ -1,5 +1,6 @@
 #include "Matrix.h"
 #include <iostream>
+#include <stdexcept>
 
 using namespace std;
 
@@ -63,12 +64,15 @@ Matrix Matrix::transpose()
 	for (int i = 0; i < rows; i++)
 		for (int j = 0; j < cols; j++)
 			res.vals[j][i] = vals[i][j];
-	for (int i = 0; i < rows; i++)
-		for (int j = 0; j < cols; j++)
-			vals[i][j] = res.vals[i][j];
-	return *this;
+	return res;
 }
-int Matrix::type()
+ostream& operator <<(ostream& os, const Matrix& m)
 {
-	return 1;
+	for (int i = 0; i < m.rows; i++)
+	{
+		for (int j = 0; j < m.cols; j++)
+			os << m.vals[i][j] << " ";
+		os << endl;
+	}
+	return os;
 }

@@ -70,7 +70,3 @@ SquareMatrix SquareMatrix::minor(int r, int c)
 		return tmp;
 	}
 }
-int SquareMatrix::type()
-{
-	return 2;
-}

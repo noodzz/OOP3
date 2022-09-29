@@ -1,6 +1,7 @@
 #pragma once
-#ifndef MATRIX_H
-#define MATRIX_H
+#ifndef __MATRIX_H__
+#define __MATRIX_H__
+#include <iostream>
 
 class Matrix
 {
@@ -22,9 +23,11 @@ public:
 	virtual void print();
 	void random_fill();
 	Matrix transpose();
-	virtual float determinant() { return 0; }
-	virtual int type();
+	virtual float determinant() { return 0; };
+	virtual int type() { return 1; };
+	friend std::ostream& operator<<(std::ostream&, const Matrix&);
 };
+
 
 #endif
 

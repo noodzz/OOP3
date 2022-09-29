@@ -2,6 +2,7 @@
 #include "Matrix.h"
 #include "SquareMatrix.h"
 #include <time.h>
+#include <iomanip>
 
 using namespace std;
 
@@ -102,19 +103,15 @@ public:
     {
         return arr[index];
     }
-    void get_and_erase(int index)
+    T get_and_erase(int index)
     {
-        cout << arr[index] << endl;;
+        return get(index);
         erase(index);
     }
     bool empty()
     {
         if (len == 0 || arr == nullptr) return true;
         else return false;
-    }
-    string get_type()
-    {
-        return typeid(*arr).name();
     }
     void resize(int l)
     {
@@ -130,10 +127,12 @@ public:
 int main()
 {
     srand(time(NULL));
-    time_t start, end;
+    clock_t start, end;
     MyStorage <Matrix*> storage(10);
+    start = clock();
     for (int i = 0; i < 100; i++)
     {
+        
         int random = rand() % 13;
         int rows = 1 + rand() % 7;
         int cols = 1 + rand() % 7;
@@ -143,65 +142,86 @@ int main()
         switch (random)
         {
         case 0:
-            cout << i << ". ";
+            cout << i << ". " << "insert Matrix at " << randpos <<endl;
             storage.insert(new Matrix(rows, cols), randpos);
             break;
         case 1:
-            cout << i << ". ";
+            cout << i << ". " << "insert SquareMatrix at " << randpos << endl;
             storage.insert(new SquareMatrix(n), randpos);
             break;
         case 2:
-            cout << i << ". ";
+            cout << i << ". " << "clear()" << endl;
             storage.clear();
             break;
         case 3:
-            cout << i << ". ";
-            storage.get(randpos);
+            cout << i << ". " << "get() at " << randpos << " ";
+            if (storage.get(randpos) != NULL) storage.get(randpos)->print();
+            else cout << storage.get(randpos) << endl;
             break;
         case 4:
-            cout << i << ". ";
-            storage.get_and_erase(randpos);
+            cout << i << ". " << "get_and_erase() at " << randpos << " ";
+            if (storage.get_and_erase(randpos) != NULL) 
+                storage.get_and_erase(randpos)->print();
+            else cout << storage.get_and_erase(randpos) << endl;
             break;
         case 5:
-            cout << i << ". ";
+            cout << i << ". " << "pop_back()" << endl;
             storage.pop_back();
             break;
         case 6:
-            cout << i << ". ";
+            cout << i << ". " << "push_back Matrix" << endl;
             storage.push_back(new Matrix(rows, cols));
             break;
         case 7:
-            cout << i << ". ";
+            cout << i << ". " << "push_back SquareMatrix" << endl;
             storage.push_back(new SquareMatrix(n));
             break;
         case 8:
-            cout << i << ". ";
+            cout << i << ". " <<"push_front SquareMatrix" << endl;
             storage.push_front(new SquareMatrix(n));
             break;
         case 9:
-            cout << i << ". ";
+            cout << i << ". " << "push_front Matrix" << endl;
             storage.push_front(new Matrix(rows, cols));
             break;
         case 10:
+            cout << i << ". ";
             if (storage[randpos] != NULL) {
-                cout << i << ". ";
                 storage[randpos]->random_fill();
+                cout << "random_fill()" << endl;
             }
+            else cout << "random_fill isnt done, bc of NULL" << endl;
             break;
         case 11:
+            cout << i << ". ";
             if (storage[randpos] != NULL) {
-                cout << i << ". ";
-                storage[randpos]->transpose();
+                cout << "transpose()" << endl;
+                storage[randpos]->transpose().print();
+                
             }
+            else cout << "transpose isnt done, bc of NULL" << endl;
             break;
-        case 12: //разобраться
-            if ((storage[randpos]->type()) == 2)
+        case 12: 
+            cout << i << ". ";
+            if (storage[randpos] != NULL && storage[randpos]->type() == 2)
             {
-                cout << i << ". ";
-                cout << storage[randpos]->determinant();
-             
-            }   
+                cout << "current pos " << randpos << "; ";
+                cout << "determinant = " << storage[randpos]->determinant() << endl;
+
+            }
+            else cout << "determinant isnt done, bc of NULL" << endl;
             break;
         }
     }
+    end = clock();
+    for (int i = 0; i < storage.size(); i++)
+    {
+        if (storage[i] != NULL)
+            cout << i << endl << *(storage[i]) << endl;
+        else cout << i << " NULL" << endl;
+    }
+    double time_taken = double(end - start) / double(CLOCKS_PER_SEC);
+    cout << "Time taken by program is : " << fixed
+        << time_taken << setprecision(5);
+    cout << " sec " << endl;
 }
