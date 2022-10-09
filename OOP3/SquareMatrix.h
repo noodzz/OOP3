@@ -21,6 +21,7 @@ public:
 	void print() override;
 	float determinant() override;
 	int type() { return 2; }
+	void set(int n);
 };
 
 #endif // !SQUAREMATRIX_H

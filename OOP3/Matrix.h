@@ -23,6 +23,7 @@ public:
 	virtual void print();
 	void random_fill();
 	Matrix transpose();
+	void set(int _r, int _c);
 	virtual float determinant() { return 0; };
 	virtual int type() { return 1; };
 	friend std::ostream& operator<<(std::ostream&, const Matrix&);

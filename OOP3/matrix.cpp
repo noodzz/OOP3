@@ -76,3 +76,12 @@ ostream& operator <<(ostream& os, const Matrix& m)
 	}
 	return os;
 }
+void Matrix::set(int _r, int _c)
+{
+	if (rows == 0 && cols == 0)
+	{
+		rows = _r;
+		cols = _c;
+	}
+	else return;
+}

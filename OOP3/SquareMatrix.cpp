@@ -70,3 +70,12 @@ SquareMatrix SquareMatrix::minor(int r, int c)
 		return tmp;
 	}
 }
+void SquareMatrix::set(int n)
+{
+	if (rows == 0 && cols == 0)
+	{
+		rows = n;
+		cols = n;
+	}
+	else return;
+}
